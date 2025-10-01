@@ -13,11 +13,11 @@
 #endif
 
 #include <ArduinoJson.h>
-StaticJsonDocument<256> jsonCmdReceive;
-StaticJsonDocument<256> jsonInfoSend;
-StaticJsonDocument<1024> jsonInfoHttp;
+JsonDocument jsonCmdReceive;
+JsonDocument jsonInfoSend;
+JsonDocument jsonInfoHttp;
 
-DynamicJsonDocument apiResponse(1408);
+JsonDocument apiResponse;
 
 #include <SCServo.h>
 #include <nvs_flash.h>
@@ -148,7 +148,7 @@ void setup() {
   mm_settings(mainType, moduleType);
 
   init_oled();
-  screenLine_0 = "Pathfinder";
+  screenLine_0 = "Pathfinder James Version";
   screenLine_1 = "version: 1.3.5";
   screenLine_2 = "starting...";
   screenLine_3 = "";
@@ -438,11 +438,11 @@ void loop() {
   // Check WiFi status and attempt reconnection if needed
   checkWifiAndReconnect();
 
-  if(runNewJsonCmd) {
-    jsonCmdReceiveHandler();
-    jsonCmdReceive.clear();
-    runNewJsonCmd = false;
-  }
+  // if(runNewJsonCmd) {
+  //   jsonCmdReceiveHandler();
+  //   jsonCmdReceive.clear();
+  //   runNewJsonCmd = false;
+  // }
 
   getLeftSpeed();
 

@@ -1,7 +1,7 @@
 
 String jsonAPIHandler(String stringInput)
 {
-  StaticJsonDocument<512> jsonInput;
+  JsonDocument jsonInput;
   deserializeJson(jsonInput, stringInput);
   int cmdType = jsonInput["T"].as<int>();
   switch (cmdType)
@@ -12,7 +12,9 @@ String jsonAPIHandler(String stringInput)
 		break;
 
   case CMD_SPEED_CTRL:
-    if (jsonInput.containsKey("T") && jsonInput.containsKey("L") && jsonInput.containsKey("R"))
+    if (jsonCmdReceive["T"].is<int>() &&
+				jsonCmdReceive["L"].is<int>() &&
+				jsonCmdReceive["R"].is<int>())
     {
       if (jsonInput["L"].is<float>() && jsonInput["R"].is<float>())
       {
@@ -350,7 +352,7 @@ unsigned long lastCommandTime = 0;
 
 void planStepToCommand(String movementPlanStep)
 {
-  StaticJsonDocument<128> step;
+  JsonDocument step;
   deserializeJson(step, movementPlanStep);
 
   int angle = step["angle"].as<int>();
@@ -558,7 +560,7 @@ String checkPlanSchema(JsonArray steps)
 
 String apiMovementPlanHandler(String jsonInput)
 {
-  StaticJsonDocument<1408> input;
+  JsonDocument input;
 
   // parse the JSON file using ArduinoJson.
   deserializeJson(input, jsonInput);
