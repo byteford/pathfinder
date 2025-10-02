@@ -1,10 +1,25 @@
-
+#include "web_page.h"
 
 // Create AsyncWebServer object on port 80
 WebServer server(80);
 
-void webCtrlServer() {
+void handleRoot() {
+  server.send(200, "text/html", index_html);
+}
 
+void webCtrlServer() {
+  server.on("/", handleRoot);
+
+  server.on("/js", []() {
+    String jsonCmdWebString = server.arg("json");
+    deserializeJson(jsonCmdReceive, jsonCmdWebString);
+    jsonCmdReceiveHandler();
+    // jsonFeedbackWeb is populated by the command handler
+    server.send(200, "application/json", jsonFeedbackWeb);
+    jsonFeedbackWeb = "";
+    jsonInfoHttp.clear();
+    jsonCmdReceive.clear();
+  });
   server.on("/v1", []() {
     server.send(200, "text/plain", "/v1");
   });

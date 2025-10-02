@@ -148,8 +148,8 @@ void setup() {
   mm_settings(mainType, moduleType);
 
   init_oled();
-  screenLine_0 = "Pathfinder James Version";
-  screenLine_1 = "version: 1.3.5";
+  screenLine_0 = "Pathfinder";
+  screenLine_1 = "version: 1.3.6";
   screenLine_2 = "starting...";
   screenLine_3 = "";
   oled_update();
@@ -438,11 +438,11 @@ void loop() {
   // Check WiFi status and attempt reconnection if needed
   checkWifiAndReconnect();
 
-  // if(runNewJsonCmd) {
-  //   jsonCmdReceiveHandler();
-  //   jsonCmdReceive.clear();
-  //   runNewJsonCmd = false;
-  // }
+  if(runNewJsonCmd) {
+    jsonCmdReceiveHandler();
+    jsonCmdReceive.clear();
+    runNewJsonCmd = false;
+  }
 
   getLeftSpeed();
 
