@@ -12,9 +12,7 @@ String jsonAPIHandler(String stringInput)
 		break;
 
   case CMD_SPEED_CTRL:
-    if (jsonCmdReceive["T"].is<int>() &&
-				jsonCmdReceive["L"].is<int>() &&
-				jsonCmdReceive["R"].is<int>())
+    if (jsonInput["T"].is<int>())
     {
       if (jsonInput["L"].is<float>() && jsonInput["R"].is<float>())
       {
@@ -475,7 +473,7 @@ void planStepToCommand(String movementPlanStep)
 
 //     String command = "";
 //     String direction = "";
-//     StaticJsonDocument<128> step;
+//     JsonDocument step;
 
 //     /*
 //     else if direction == "left" {
