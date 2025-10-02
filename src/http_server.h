@@ -20,6 +20,7 @@ void webCtrlServer() {
     jsonInfoHttp.clear();
     jsonCmdReceive.clear();
   });
+  
   server.on("/v1", []() {
     server.send(200, "text/plain", "/v1");
   });

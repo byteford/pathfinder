@@ -217,7 +217,7 @@ const char index_html[] PROGMEM = R"rawliteral(
         padding: 10px;
         border: none;
     }
-
+        
     .w-btn:hover{color: #2698EA;}
     .w-btn:active{color: #1b87d4;}
     @media screen and (min-width: 768px) and (max-width: 1200px){
@@ -242,7 +242,7 @@ const char index_html[] PROGMEM = R"rawliteral(
         .control-speed > div{width: 600px;}
         section{margin: 20px 0;}
     }
-
+    
     @media screen and (min-width: 360px) and (max-width: 767px){
         main {
             width: 100%;
